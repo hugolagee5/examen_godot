@@ -1,3 +1,24 @@
 [gd_scene format=3 uid="uid://dywrtm7rpn3uv"]
 
+[ext_resource type="Script" uid="uid://i3h50uxpugtu" path="res://jugador.gd" id="1_0e48y"]
+[ext_resource type="Texture2D" uid="uid://bfewmtp1uwsfx" path="res://icon.svg" id="2_epypp"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lfkbx"]
+radius = 35.0
+height = 184.0
+
 [node name="Node2D" type="Node2D" unique_id=1718206882]
+
+[node name="jugador" type="CharacterBody2D" parent="." unique_id=396727787]
+script = ExtResource("1_0e48y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="jugador" unique_id=1125116113]
+shape = SubResource("CapsuleShape2D_lfkbx")
+
+[node name="Sprite2D" type="Sprite2D" parent="jugador" unique_id=2047549825]
+position = Vector2(-2, 0)
+scale = Vector2(0.45312497, 1.34375)
+texture = ExtResource("2_epypp")
+
+[node name="Camera2D" type="Camera2D" parent="jugador" unique_id=1220523743]
+position = Vector2(59, -59)

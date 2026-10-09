@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://ds4wxu0t4dwyl"]
+
+[ext_resource type="Texture2D" uid="uid://bfewmtp1uwsfx" path="res://icon.svg" id="1_7ul0n"]
+[ext_resource type="Script" uid="uid://dgdl426lfw432" path="res://principal.gd" id="1_a35id"]
+[ext_resource type="PackedScene" uid="uid://dywrtm7rpn3uv" path="res://node_2d.tscn" id="2_4to2k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lfkbx"]
+size = Vector2(1468, 151)
+
+[sub_resource type="Animation" id="Animation_5hs68"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer:root_motion_track")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [NodePath("")]
+}
+
+[sub_resource type="Animation" id="Animation_aaorx"]
+resource_name = "position"
+length = 4.1
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer:root_motion_track")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.20000005),
+"transitions": PackedFloat32Array(0.9012511),
+"update": 0,
+"values": [NodePath("")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5eh06"]
+_data = {
+&"RESET": SubResource("Animation_5hs68"),
+&"position": SubResource("Animation_aaorx")
+}
+
+[node name="Node2D" type="Node2D" unique_id=587702934]
+script = ExtResource("1_a35id")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=613363579]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=369855168]
+position = Vector2(508, 666)
+shape = SubResource("RectangleShape2D_lfkbx")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=457208179]
+position = Vector2(505.50003, 661.5)
+scale = Vector2(11.4765625, 1.1328123)
+texture = ExtResource("1_7ul0n")
+
+[node name="Node2D" parent="." unique_id=1718206882 instance=ExtResource("2_4to2k")]
+position = Vector2(-11, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1203557292]
+position = Vector2(563, 5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" unique_id=1945550534]
+libraries/ = SubResource("AnimationLibrary_5eh06")
+
+[node name="Timer" type="Timer" parent="." unique_id=1566146436]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
